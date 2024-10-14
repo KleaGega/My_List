@@ -8,7 +8,7 @@ function Item({ todo, index, deleteDo, editDo }) {
     <div className='item'>
       <p>{todo}</p>
       <div className='font-item'>
-        <FontAwesomeIcon 
+        <FontAwesomeIcon  
           icon={faTrash} 
           onClick={() => deleteDo(index)}
           className='delete-btn'

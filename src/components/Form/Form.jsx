@@ -1,12 +1,19 @@
-import React from 'react';
-import './Form.css'
-function Form({ addTask, inputValue, setInputValue, updateDo, isEditing }) {
+
+import './Form.css';
+import React, { useState } from 'react';
+import PropTypes from "prop-types";
+function Form({ addTask, isEditing, updateDo, editIndex }) {
+  const [inputValue, setInputValue] = useState('');
+
   const handleSubmit = (e) => {
-    e.preventDefault(); 
-    if (isEditing) {
-      updateDo(); 
-    } else {
-      addTask(inputValue); 
+    e.preventDefault();
+    if (inputValue.trim()) {
+      if (isEditing) {
+        updateDo(editIndex, inputValue);
+      } else {
+        addTask(inputValue.trim()); 
+      }
+      setInputValue(''); 
     }
   };
 
@@ -15,12 +22,17 @@ function Form({ addTask, inputValue, setInputValue, updateDo, isEditing }) {
       <input
         type="text"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)} 
+        onChange={(e) => setInputValue(e.target.value)}
         placeholder="Add a new task..."
       />
-      <button type="submit">{isEditing ? 'Update' : 'Add'}</button>
+      <button type="submit">{isEditing ? 'Update Task' : 'Add Task'}</button>
     </form>
   );
 }
-
+Form.propTypes = {
+  addTask: PropTypes.func,
+  updateDo: PropTypes.func,
+};
 export default Form;
+
+
