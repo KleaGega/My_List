@@ -1,30 +1,53 @@
 body {
   background-color: beige;
   font-family: Arial, sans-serif;
-  display: flex;
+  display: block;
   justify-content: center;
   height: 100vh;
   margin-top: 70px;
+ 
 }
 
-
+.input-check {
+  height: 16px;
+}
 h1 {
   text-align: center;
   color: #4b3c26;
   margin-bottom: 20px; 
 }
+.input-textarea {
+  display: block;
+}
+.input-text-btn {
+  display: flex;
+  align-items: center;
+}
 
 
 form {
-  display: flex;
-  align-items: center; 
+  display: block;
   justify-content: center;
   gap: 10px;
+  align-items: center;
+
  }
+textarea {
+  margin-top: 18px;
+  width: 90%;
+  height: auto;
+  resize: none;
+  padding: 10px; 
+  font-size: 16px; 
+  border: 2px solid #d5b89b; 
+  border-radius: 5px; 
+  color: #4b3c26;
+  background-color: #f9f5eb; 
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
 
-
-input {
-  width: 100%; 
+input.task {
+  width: 90%;
   height: 27px;
   padding: 10px; 
   font-size: 16px; 

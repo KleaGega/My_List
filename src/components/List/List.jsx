@@ -1,19 +1,21 @@
 import React from 'react';
-import Item from '../Item/Item';
-import './List.css';
-
-function List({ todos, deleteDo, editDo }) {
+import TodoItem from '../Item/ToDoItem'
+import './List.css'
+function List({ todos, deleteTodo, editTodo }) {
   return (
-    <div className="list">
-      {todos.map((todo, index) => (
-        <Item 
-          key={index} 
-          todo={todo} 
-          index={index} 
-          deleteDo={deleteDo} 
-          editDo={editDo} 
-        />
-      ))}
+    <div className='my-list'>
+      {todos.length === 0 ? (
+        <p>No todos available.</p>
+      ) : (
+        todos.map(todo => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+          />
+        ))
+      )}
     </div>
   );
 }

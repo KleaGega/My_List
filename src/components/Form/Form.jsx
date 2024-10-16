@@ -1,38 +1,60 @@
-
-import './Form.css';
-import React, { useState } from 'react';
-import PropTypes from "prop-types";
-function Form({ addTask, isEditing, updateDo, editIndex }) {
-  const [inputValue, setInputValue] = useState('');
-
+import React from "react";
+import './Form.css'
+function Form({ addTask, isEditing, editValue, editDescription, setEditValue, setEditDescription, updateTodo, isCompleted, setIsCompleted }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.trim()) {
-      if (isEditing) {
-        updateDo(editIndex, inputValue);
-      } else {
-        addTask(inputValue.trim()); 
-      }
-      setInputValue(''); 
+    if (isEditing) {
+      updateTodo(); 
+    } else {
+      addTask(editValue, editDescription); 
     }
+
+    setEditValue('');
+    setEditDescription('');
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="input-text-btn">
+      <div className="input-textarea">
       <input
         type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Add a new task..."
+        placeholder="Task Title"
+        value={editValue}
+        onChange={(e) => setEditValue(e.target.value)}
+        required
+        className="task"
       />
-      <button type="submit">{isEditing ? 'Update Task' : 'Add Task'}</button>
+      <textarea
+        placeholder="Task Description"
+        value={editDescription}
+        onChange={(e) => setEditDescription(e.target.value)}
+        required
+      />
+      </div>
+      <button type="submit">{isEditing ? 'Update' : 'Add'} Task</button>
+      </div>
+      
+      {isEditing && (
+        <div>
+        <label>
+          Completed:
+          <input
+            type="checkbox"
+            checked={isCompleted}
+            className="input-check"
+            onChange={(e) => setIsCompleted(e.target.checked)
+          
+            }
+          />
+        </label>
+        </div>
+      )}
+      
     </form>
+    
+    
   );
 }
-Form.propTypes = {
-  addTask: PropTypes.func,
-  updateDo: PropTypes.func,
-};
+
 export default Form;
-
-
